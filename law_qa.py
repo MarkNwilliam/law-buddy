@@ -1,7 +1,6 @@
 # First
 import openai 
 import streamlit as st
-import pypdf
 import requests
 import json
 from langchain.chat_models import ChatOpenAI
