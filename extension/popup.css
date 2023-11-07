@@ -1,0 +1,152 @@
+body {
+  width: 600px;
+  height: 400px;
+  padding: 0;
+  margin: 0;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  background-color: #000000;
+  color: #ace1af;
+}
+
+.container {
+  position: relative;
+  top: -2rem;
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px;
+}
+
+#startHeading1 {
+  position: relative;
+  top: 2px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  font-size: 28px;
+}
+
+#startHeading2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.input-container {
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#inputText {
+  position: relative;
+  width: 95%;
+  height: 4rem;
+  padding: 10px;
+  right: 1px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #303030;
+  color: #ffffff;
+  border-radius: 5px;
+  resize: none;
+}
+
+.button-container {
+  /* display: flex; */
+  justify-content: space-around;
+}
+
+button {
+  position: relative;
+  padding: 10px 20px;
+  top: 6px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.primary-button {
+  position: relative;
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.secondary-button {
+  position: relative;
+  background-color: #555555;
+  color: #ffffff;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.typewriter {
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  /*letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}
+
+#submit-button {
+  background-color: #0084FF;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+span.material-symbols-rounded {
+  user-select: none;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+button:active {
+  background-color: #020cd1;
+}
+
+#sendButton1, #sendButton2 {
+  position: relative;
+  width: 90%;
+  margin-top: 20px;
+}
+
+#submit {
+  position: absolute;
+  top: 38%;
+  right: 11%;
+}

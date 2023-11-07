@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "LabLab Project",
+  "version": "1.0",
+  "permissions": ["activeTab","tabs"],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "../images/kawaki.png",
+      "48": "../images/kawaki.png",
+      "128": "../images/kawaki.png"
+    }
+  },
+  "content_security_policy": "script-src 'self' http://localhost:3000; object-src 'self'",
+  "icons": {
+    "16": "../images/kawaki.png",
+    "48": "../images/kawaki.png",
+    "128": "../images/kawaki.png"
+  }
+}

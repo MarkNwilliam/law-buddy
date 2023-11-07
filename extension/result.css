@@ -1,0 +1,60 @@
+html {
+    font-size: 62.5%;
+    background-color: #F8F8F8;
+}
+  
+body {
+    font-size: small;
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    width: 60rem;
+    max-height: 40rem;
+    height: 50rem;
+    overflow-y: scroll;
+    color: #333;
+    display: flex;
+}
+
+  .svg{
+    position: absolute;
+    left: 5rem;
+    width:40%;
+    height:40%;
+}
+
+  .heading {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+}
+
+  nav {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    font-family: "Montserrat", sans-serif;
+    width: 100%;
+    background-image: url("./images/img4.png");
+  }
+
+  #readRequest{
+    position: relative;
+    top: 20%;
+    color: black;
+  }
+
+  .scrollable {
+    font-size: medium;
+    top: 8rem;
+    padding-left: 2rem;
+    width: 500px;
+    height: 300px;
+    justify-content: space-around;
+    line-height: 1.2;
+    overflow: auto;
+  }
