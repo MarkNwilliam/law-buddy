@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ask.addEventListener('click',() => {
     const text = inputText.value.trim();
     if (text === "") return;
+    localStorage.setItem("url",url);
+    localStorage.setItem("question",text);
     window.location.href="result.html";
   })
 
