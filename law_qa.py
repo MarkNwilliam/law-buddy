@@ -6,31 +6,39 @@ import json
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain
+openai_api_key = st.secrets.OPENAI_API_KEY
+
+st.title("LAW-IO-BUDDY ⚖️ ")
 
 st.session_state.k1 = 0
 
 st.sidebar.title("Customization Options")
+
+st.subheader(
+    "Legal-related PDF personified as your own :blue[Law assistant]",
+)
     
-openai_api_key = st.secrets.OPENAI_API_KEY
 
 customization_options = {
         "country": st.sidebar.selectbox("Select Country", ["INDIA", "USA", "UK"]),
+        "info":st.sidebar.info('Select ChatGPT option to merge both document and legal database of the Country', icon="ℹ️"),
         "use_chatgpt":st.sidebar.radio("Use ChatGPT", ["No", "Yes"]),
-        "words": st.sidebar.slider("Number of words", 0, 750, 100),
+        "words": st.sidebar.slider("Number of words", 0, 750, 50),
         "src": st.sidebar.radio("Show Source of Text", ["No", "Yes"])
     }
+
 
 country_cid = {"INDIA": 5, "USA": 6, "UK": 7}
 all_country_api = "zwt_h_p6lWnM5xwLO7Cd-3T6HPyphP7F78VOtZTPTg"
 
-doc_api = 'zwt_h_p6lTWvH8AmgesgThxhNecMP28NKYcLqN2_xw'
+doc_api = 'zqt_h_p6lQhsZWuoy4Sqp095iRReJOJhH3c6D7m1og'
 
 
 llm = ChatOpenAI(temperature=0.9, openai_api_key = openai_api_key)
 
 def query_gpt(lawtext, text, query):
     nwords = customization_options['words']
-    prompt = "Using the above " + lawtext + "and the current information related to it " + text + "answer the queestion given below {query} in " + str(nwords) 
+    prompt = "Using the above " + lawtext + "and the current information related to it " + text + "answer the queestion given below {query} in " + str(nwords) + " do not say you dont have enough information, answer with provided information"
     prompt = ChatPromptTemplate.from_template(prompt)
 
     chain = LLMChain(llm=llm, prompt=prompt)
@@ -122,7 +130,7 @@ def reset_corpus(corpus_id):
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'customer-id': '2281339541',
-    'Authorization': 'Bearer eyJraWQiOiI1SDgrV3FSeW5RNERCdUVGNG1DUDVCUmNTSUN4RlBJalROTnNBbExsK2I0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MmdjcWg2anI2bWlnN25kMXBwOXF2Z3E0aCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUXVlcnlTZXJ2aWNlXC9RdWVyeSBRdWVyeVNlcnZpY2VcL1N0cmVhbVF1ZXJ5IiwiYXV0aF90aW1lIjoxNjk5MzgxOTg4LCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9iS2tSanhMejYiLCJleHAiOjE2OTkzODU1ODgsImlhdCI6MTY5OTM4MTk4OCwidmVyc2lvbiI6MiwianRpIjoiYjAxMjljNGItYjJmNC00MTQyLWI4MDctOTQxYmVlN2I1MmM4IiwiY2xpZW50X2lkIjoiNDJnY3FoNmpyNm1pZzduZDFwcDlxdmdxNGgifQ.Kfodh9rxjeisdYxNwhU_SdiIhMDEg5Ywr9EP5SNI4KeB2mTddzTi0Lov7y_nvLiV4jWHvrGBZEbIqiT3W7kncYgpqcNYlvA-MNEWdyW3D-6POAPikrvgKOB_07B1hSI0XWN_5j4SYwDbdlnTvwAh1uxB845YYgECGoDYab6GohY_mc_9USq-DiuVKdT7HJI7qRP9X2bPKsPvM6HrCXZqMl_zkQL6IDj0BHWVX8UTnz3apI8Pi3ZWyFjoI3fDJvsg7oeEiP4dJbqZVHg_9sA_nsPCzMi7OcWVgt9bbIFzQlVVDRlNMr0b7hdBZDXYAYwU8YrhJyMZuISrP0mbKQiHUw'
+    'Authorization': 'Bearer eyJraWQiOiI1SDgrV3FSeW5RNERCdUVGNG1DUDVCUmNTSUN4RlBJalROTnNBbExsK2I0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MmdjcWg2anI2bWlnN25kMXBwOXF2Z3E0aCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUXVlcnlTZXJ2aWNlXC9RdWVyeSBRdWVyeVNlcnZpY2VcL1N0cmVhbVF1ZXJ5IiwiYXV0aF90aW1lIjoxNjk5NDYzNzYxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9iS2tSanhMejYiLCJleHAiOjE2OTk0NjczNjEsImlhdCI6MTY5OTQ2Mzc2MSwidmVyc2lvbiI6MiwianRpIjoiYTFiZTliOTAtNDJlYy00M2Q2LWI2MTgtNzZlYjk2NzJiMTg1IiwiY2xpZW50X2lkIjoiNDJnY3FoNmpyNm1pZzduZDFwcDlxdmdxNGgifQ.DlClH9TvK4NC9u8BGfYLFDB9n5n4xOv7281d3VMsT7-To0xeV9pc_cGfXtO9y9Xqn0OnyeKzmPfomfLpRXW4I2PxGvwnO0KjXfldGiINqvMLMY2fftblfjOSuURjfOWeu_ousF23NA7Com3vMtQ-Bp7HYZ_qgWesi6JBEvnFvaBbN66m4ZraEon7X8gSvPHYWC5u0fXUpAl-7yoHsLgY9_N3BPR5Sy48uGTwzyjFkBcdm5a8za13UKk4K6pgELSrCrLPkNmCbJq_0GUQ8kXBnPXk8aKKrJVuDAhJXXHKGTBoSsnWSVNNYNm9zhP_J8O5qwcinkOAhgKCWDpx5yG0Cg'
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
@@ -132,7 +140,7 @@ def reset_corpus(corpus_id):
 
 def upload_file(file, filename):
     post_headers = {
-        "Authorization": f"Bearer eyJraWQiOiI1SDgrV3FSeW5RNERCdUVGNG1DUDVCUmNTSUN4RlBJalROTnNBbExsK2I0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MmdjcWg2anI2bWlnN25kMXBwOXF2Z3E0aCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUXVlcnlTZXJ2aWNlXC9RdWVyeSBRdWVyeVNlcnZpY2VcL1N0cmVhbVF1ZXJ5IiwiYXV0aF90aW1lIjoxNjk5MzgyOTAzLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9iS2tSanhMejYiLCJleHAiOjE2OTkzODY1MDMsImlhdCI6MTY5OTM4MjkwMywidmVyc2lvbiI6MiwianRpIjoiZDNjMjE0YjgtMDRiNy00YjgyLWFjN2QtM2ViNDA1ZjZiMzE1IiwiY2xpZW50X2lkIjoiNDJnY3FoNmpyNm1pZzduZDFwcDlxdmdxNGgifQ.XjqLae0GNMBWPlSGMCcgBgWZtDRChHcvnK3JT2RbOuDUZLgQ6b1vdkYKg9PKEU05_Y267ziqV2anSCDceOvAJhr4K0S-PnSUKpaJ9X5fEM1p6pDPeyzVQJZuHF8PmT4X9dgrY60HULd0wwdwLQ3FoNEEnoI8BEXfpq19uh96XO-xXDFdvSnbmjCop_I6KjS1NJoVntX6DlZeCzbPiCqYstoa9FcQTQN08d4A8qTi2-q9Vn4O2HUOlwfZ6C_ETluXWX6On8BVqJjmBfpgshhbovEpRdhO1fT17zkIkHmxfz3PQyrp-SW1UlqD6nSWo9-MEXPTTbntep81sPpgEEa7Uw",
+        "Authorization": f"Bearer eyJraWQiOiI1SDgrV3FSeW5RNERCdUVGNG1DUDVCUmNTSUN4RlBJalROTnNBbExsK2I0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MmdjcWg2anI2bWlnN25kMXBwOXF2Z3E0aCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUXVlcnlTZXJ2aWNlXC9RdWVyeSBRdWVyeVNlcnZpY2VcL1N0cmVhbVF1ZXJ5IiwiYXV0aF90aW1lIjoxNjk5NDYzNzYxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9iS2tSanhMejYiLCJleHAiOjE2OTk0NjczNjEsImlhdCI6MTY5OTQ2Mzc2MSwidmVyc2lvbiI6MiwianRpIjoiYTFiZTliOTAtNDJlYy00M2Q2LWI2MTgtNzZlYjk2NzJiMTg1IiwiY2xpZW50X2lkIjoiNDJnY3FoNmpyNm1pZzduZDFwcDlxdmdxNGgifQ.DlClH9TvK4NC9u8BGfYLFDB9n5n4xOv7281d3VMsT7-To0xeV9pc_cGfXtO9y9Xqn0OnyeKzmPfomfLpRXW4I2PxGvwnO0KjXfldGiINqvMLMY2fftblfjOSuURjfOWeu_ousF23NA7Com3vMtQ-Bp7HYZ_qgWesi6JBEvnFvaBbN66m4ZraEon7X8gSvPHYWC5u0fXUpAl-7yoHsLgY9_N3BPR5Sy48uGTwzyjFkBcdm5a8za13UKk4K6pgELSrCrLPkNmCbJq_0GUQ8kXBnPXk8aKKrJVuDAhJXXHKGTBoSsnWSVNNYNm9zhP_J8O5qwcinkOAhgKCWDpx5yG0Cg",
     }
     response = requests.post(
         f"https://api.vectara.io/v1/upload?c=2281339541&o=4",
@@ -151,7 +159,7 @@ def uploader(uploaded_file):
 
         res = reset_corpus(4)
 
-        # st.write(res)
+        st.write(res)
 
         binary_file = uploaded_file.read()
 
@@ -159,7 +167,7 @@ def uploader(uploaded_file):
 
         response = upload_file(binary_file, filename)
 
-        # st.write(response)
+        st.write(response)
 
         st.session_state.k1 +=1
 
@@ -168,7 +176,6 @@ def uploader(uploaded_file):
 
 def main():
     k = 0
-    st.title("Chat with your documents")
     uploaded_file = st.file_uploader("Upload a file", type=["txt", "pdf", "png", "jpg", "jpeg"])
 
     m = uploader(uploaded_file)
