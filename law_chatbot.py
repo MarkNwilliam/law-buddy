@@ -9,15 +9,19 @@ openai_api_key = st.secrets.OPENAI_API_KEY
 import json
 import requests
 
-st.title("Legal Chatbot")
-
+st.title("📜 LAW-IO-BUDDY 📜")
+st.subheader(
+    "Your personalized :blue[Law assistant] to answer all your queries",
+)
 st.sidebar.title("Customization Options")
     
 customization_options = {
         "country": st.sidebar.selectbox("Select Country", ["INDIA", "USA", "UK"]),
         "use_chatgpt":st.sidebar.radio("Use ChatGPT", ["No", "Yes"]),
-        "words": st.sidebar.slider("Number of words", 0, 750, 100),
-        "src": st.sidebar.radio("Show Source of Text", ["No", "Yes"])
+        "words": st.sidebar.slider("Number of words", 0, 750, 50),
+        "src": st.sidebar.radio("Show Source of Text", ["No", "Yes"]),
+        "web": st.sidebar.radio("Search the Web?", ["No", "Yes"]),
+        "info":st.sidebar.info('Select Yes to find content from the internet', icon="ℹ️"),
     }
 
 country_cid = {"INDIA": 5, "USA": 6, "UK": 7}
@@ -104,7 +108,7 @@ llm = ChatOpenAI(temperature=0.9, openai_api_key = openai_api_key)
 
 def query_gpt(lawtext, text, query):
     nwords = customization_options['words']
-    prompt = "Using the above " + lawtext + "and the current information related to it " + text + "answer the queestion given below {query} in {nwords}" 
+    prompt = "Using the above " + lawtext + "and the current information related to it " + text + "answer the queestion given below {query} in {nwords}, do not say you do not have enough information, always answer with the information provided" 
     prompt = ChatPromptTemplate.from_template(prompt)
 
     chain = LLMChain(llm=llm, prompt=prompt)
@@ -114,6 +118,15 @@ def query_gpt(lawtext, text, query):
     return output
 
 
+def query_web(query):
+    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=openai_api_key, streaming=True)
+    search = DuckDuckGoSearchRun(name="Search")
+    search_agent = initialize_agent([search], llm, agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION, handle_parsing_errors=True)
+    # st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
+    response = search_agent.run(query)  #callbacks=[st_cb]
+
+    return response
+          
 
 if 1:
     if "messages" not in st.session_state.keys(): # Initialize the chat messages history
@@ -133,6 +146,7 @@ if 1:
                 cid = country_cid[customization_options['country']]
                 resp = query_vectara(cid, prompt, all_country_api)
                 msg, texts = extract_from_vectara(resp)
+
                 if customization_options["use_chatgpt"] == "Yes":
                     # cid = country_cid[customization_options['country']]
                     # resp1 = query_vectara(cid, prompt, all_country_api)
@@ -145,6 +159,9 @@ if 1:
                     chain = LLMChain(llm=llm, prompt=prompt1)
 
                     msg = chain.run(prompt)
+                
+                if customization_options['web'] == "Yes":
+                    msg = query_web(prompt)
 
                 st.write(msg)
                 if customization_options['src'] == "Yes":
