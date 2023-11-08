@@ -4,6 +4,9 @@ import streamlit as st
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain
+from langchain.agents import initialize_agent, AgentType
+from langchain.callbacks import StreamlitCallbackHandler
+from langchain.tools import DuckDuckGoSearchRun
 
 openai_api_key = st.secrets.OPENAI_API_KEY
 import json
