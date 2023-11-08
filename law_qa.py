@@ -141,7 +141,7 @@ def reset_corpus(corpus_id):
 
 def upload_file(file, filename):
     post_headers = {
-        "Authorization": f"Bearer {}".format(vectara_key),
+        "Authorization": "Bearer {}".format(vectara_key),
     }
     response = requests.post(
         f"https://api.vectara.io/v1/upload?c=2281339541&o=4",
