@@ -20,11 +20,11 @@ st.sidebar.title("Customization Options")
     
 customization_options = {
         "country": st.sidebar.selectbox("Select Country", ["INDIA", "USA", "UK"]),
+        "web": st.sidebar.radio("Search the Web?", ["No", "Yes"]),
+        "info":st.sidebar.info('Select Yes to find content from the internet', icon="ℹ️"),
         "use_chatgpt":st.sidebar.radio("Use ChatGPT", ["No", "Yes"]),
         "words": st.sidebar.slider("Number of words", 0, 750, 50),
         "src": st.sidebar.radio("Show Source of Text", ["No", "Yes"]),
-        "web": st.sidebar.radio("Search the Web?", ["No", "Yes"]),
-        "info":st.sidebar.info('Select Yes to find content from the internet', icon="ℹ️"),
     }
 
 country_cid = {"INDIA": 5, "USA": 6, "UK": 7}
