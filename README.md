@@ -17,7 +17,7 @@ LAW-IO-BUDDY is a legal assistance tool which provides three main features follo
 ## Product Screenshots
 
 1. Web Extension 
-![Extension]()
+![Extension](./extension/images/Extension.png)
 
 2. Legal Chatbot
 ![Legal Chatbot]()
