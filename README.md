@@ -1,4 +1,4 @@
-![image](https://github.com/jayavibhavnk/law-buddy/assets/97757366/1aeedd77-8819-4a6f-90d6-4bcd47ddab10)# LAW-IO-BUDDY
+# LAW-IO-BUDDY
 ---
 ## Your personalized Law assistant to answer all your queries
 
