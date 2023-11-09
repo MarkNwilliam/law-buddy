@@ -7,6 +7,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain
 openai_api_key = st.secrets.OPENAI_API_KEY
+vectara_key = st.secrets.VECTARA_KEY
 
 st.title("LAW-IO-BUDDY ⚖️ ")
 
@@ -130,7 +131,7 @@ def reset_corpus(corpus_id):
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'customer-id': '2281339541',
-    'Authorization': 'Bearer eyJraWQiOiI1SDgrV3FSeW5RNERCdUVGNG1DUDVCUmNTSUN4RlBJalROTnNBbExsK2I0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MmdjcWg2anI2bWlnN25kMXBwOXF2Z3E0aCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUXVlcnlTZXJ2aWNlXC9RdWVyeSBRdWVyeVNlcnZpY2VcL1N0cmVhbVF1ZXJ5IiwiYXV0aF90aW1lIjoxNjk5NDYzNzYxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9iS2tSanhMejYiLCJleHAiOjE2OTk0NjczNjEsImlhdCI6MTY5OTQ2Mzc2MSwidmVyc2lvbiI6MiwianRpIjoiYTFiZTliOTAtNDJlYy00M2Q2LWI2MTgtNzZlYjk2NzJiMTg1IiwiY2xpZW50X2lkIjoiNDJnY3FoNmpyNm1pZzduZDFwcDlxdmdxNGgifQ.DlClH9TvK4NC9u8BGfYLFDB9n5n4xOv7281d3VMsT7-To0xeV9pc_cGfXtO9y9Xqn0OnyeKzmPfomfLpRXW4I2PxGvwnO0KjXfldGiINqvMLMY2fftblfjOSuURjfOWeu_ousF23NA7Com3vMtQ-Bp7HYZ_qgWesi6JBEvnFvaBbN66m4ZraEon7X8gSvPHYWC5u0fXUpAl-7yoHsLgY9_N3BPR5Sy48uGTwzyjFkBcdm5a8za13UKk4K6pgELSrCrLPkNmCbJq_0GUQ8kXBnPXk8aKKrJVuDAhJXXHKGTBoSsnWSVNNYNm9zhP_J8O5qwcinkOAhgKCWDpx5yG0Cg'
+    'Authorization': 'Bearer {}'.format(vectara_key)
     }
 
     response = requests.request("POST", url, headers=headers, data=payload)
@@ -140,7 +141,7 @@ def reset_corpus(corpus_id):
 
 def upload_file(file, filename):
     post_headers = {
-        "Authorization": f"Bearer eyJraWQiOiI1SDgrV3FSeW5RNERCdUVGNG1DUDVCUmNTSUN4RlBJalROTnNBbExsK2I0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI0MmdjcWg2anI2bWlnN25kMXBwOXF2Z3E0aCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiUXVlcnlTZXJ2aWNlXC9RdWVyeSBRdWVyeVNlcnZpY2VcL1N0cmVhbVF1ZXJ5IiwiYXV0aF90aW1lIjoxNjk5NDYzNzYxLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtd2VzdC0yLmFtYXpvbmF3cy5jb21cL3VzLXdlc3QtMl9iS2tSanhMejYiLCJleHAiOjE2OTk0NjczNjEsImlhdCI6MTY5OTQ2Mzc2MSwidmVyc2lvbiI6MiwianRpIjoiYTFiZTliOTAtNDJlYy00M2Q2LWI2MTgtNzZlYjk2NzJiMTg1IiwiY2xpZW50X2lkIjoiNDJnY3FoNmpyNm1pZzduZDFwcDlxdmdxNGgifQ.DlClH9TvK4NC9u8BGfYLFDB9n5n4xOv7281d3VMsT7-To0xeV9pc_cGfXtO9y9Xqn0OnyeKzmPfomfLpRXW4I2PxGvwnO0KjXfldGiINqvMLMY2fftblfjOSuURjfOWeu_ousF23NA7Com3vMtQ-Bp7HYZ_qgWesi6JBEvnFvaBbN66m4ZraEon7X8gSvPHYWC5u0fXUpAl-7yoHsLgY9_N3BPR5Sy48uGTwzyjFkBcdm5a8za13UKk4K6pgELSrCrLPkNmCbJq_0GUQ8kXBnPXk8aKKrJVuDAhJXXHKGTBoSsnWSVNNYNm9zhP_J8O5qwcinkOAhgKCWDpx5yG0Cg",
+        "Authorization": "Bearer {}".format(vectara_key),
     }
     response = requests.post(
         f"https://api.vectara.io/v1/upload?c=2281339541&o=4",
