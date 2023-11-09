@@ -16,14 +16,22 @@ LAW-IO-BUDDY is a legal assistance tool which provides three main features follo
 
 ## Product Screenshots
 
-1. Web Extension 
-    <img src="./extension/images/Extension.png" width="500" align="middle">
+1. Web Extension
+   
+   <img width="500" alt="Extension" src="https://github.com/jayavibhavnk/law-buddy/assets/116006185/637b97b2-9554-4d4f-9ad8-03cff8d44631">
+
 
 3. Legal Chatbot
-    <img src="extension/images/PDF-Buddy.png" width="500" align="middle">
-
-4. Document Q&A
-    <img src="extension/images/Chatbot.png" width="500" align="middle">
+       
+    <img width="600" alt="Chatbot" src="https://github.com/jayavibhavnk/law-buddy/assets/116006185/6e649b68-4c6c-4421-b3a0-af17f7a97497">
 
 
+5. Document Q&A
+       
+    <img width="600" alt="PDF-Buddy" src="https://github.com/jayavibhavnk/law-buddy/assets/116006185/b3eadd44-fb19-44c1-b52e-61e168ad3169">
+
+
+
+
+      
 Overall, LAW-IO-BUDDY is the ultimate legal research assistant which can boost the speeds of users during research whilst also being a beginner friendly platform to accommodate users who are unaware about the intricate aspects of certain laws. The 2nd and 3rd features can also run as standalone webpages.
