@@ -52,57 +52,36 @@ def query_gpt(lawtext, text, query):
 
 def query_vectara(corpus_id, query, api):
     url = "https://api.vectara.io/v1/query"
+    
     payload = json.dumps({
-    "query": [
+      "query": [
         {
-        "query": query,
-        "start": 0,
-        "numResults": 3,
-        "contextConfig": {
-            "charsBefore": 30,
-            "charsAfter": 30,
-            "sentencesBefore": 3,
-            "sentencesAfter": 3,
-            "startTag": "<b>",
-            "endTag": "</b>"
-        },
-        "corpusKey": [
+          "query": "scenarios?",
+          "start": 0,
+          "numResults": 10,
+          "corpusKey": [
             {
-            "customerId": 0,
-            "corpusId": corpus_id,
-            "semantics": "DEFAULT",
-            "dim": [
-                {
-                "name": "string",
-                "weight": 0
-                }
-            ],
-            "metadataFilter": "part.lang = 'eng'",
-            "lexicalInterpolationConfig": {
-                "lambda": 0
+              "customerId": 12345678,
+              "corpusId": 4
             }
+          ],
+          "summary": [
+            {
+              "summarizerPromptName": "vectara-summary-ext-v1.2.0",
+              "responseLang": "en",
+              "maxSummarizedResults": 5
             }
-        ],
-        "rerankingConfig": {
-            "rerankerId": 272725717
-        },
-        "summary": [
-        {
-          "summarizerPromptName": "vectara-summary-ext-v1.2.0",
-          "maxSummarizedResults": 5,
-          "responseLang": "en"
+          ]
         }
-        ]
-        }
-    ]
+      ]
     })
     headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'customer-id': '2281339541',
-    'x-api-key': api
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'customer-id': '2281339541',
+      'x-api-key': 'zwt_h_p6lTWvH8AmgesgThxhNecMP28NKYcLqN2_xw'
     }
-
+    
     response = requests.request("POST", url, headers=headers, data=payload)
 
     k = response.text
